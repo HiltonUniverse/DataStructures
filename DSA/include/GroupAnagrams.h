@@ -7,10 +7,40 @@
 class Solution
 {
 public:
-    //Overall time complexity
-    // O(m) * (O(n) + O(1)) + O(m) * O(1)
-    // O(m*n) + O(m) + O(m)
-    // removing least significat terms and keeping the most significant term : O(m*n)
+    /*
+    Overall time complexity: O(m*n)
+    O(m) * (O(n) + O(1)) + O(m) * O(1)
+    O(m*n) + O(m) + O(m)
+    removing least significat terms and keeping the most significant term : O(m*n)
+
+
+    Overall space complexity: O(m*n)
+
+    1. unordered_map<string, vector<string>> m:
+        The unordered_map m stores the key-value pairs for grouping the anagrams.
+        The space it occupies depends on the number of distinct keys and the number of anagrams associated with each key.
+        In the worst case, there can be 'n' distinct keys (where 'n' is the number of strings in strs),
+        and each key might have 'm' anagrams (the maximum number of anagrams). Therefore, the worst-case space complexity for m is O(n * m).
+
+    2.vector<vector<string>> result:
+        The result vector stores the grouped anagrams as the final output.
+        In the worst case, there can be 'n' groups (where 'n' is the number of strings in strs),
+        and each group might contain all the strings if all strings are anagrams of each other.
+        Therefore, the worst-case space complexity for result is O(n).
+
+    3. vector<int> count(26) and string key (inside the getKey function):
+        The count vector is used for counting character occurrences, and key is a string used as a hash key.
+        Both count and key have fixed sizes and do not depend on the input size. They take constant space.
+        The space complexity for count and key is O(1).
+
+    Summing up the space complexities of all the components:
+
+    O(n * m) (for unordered_map m) + O(n) (for vector<vector<string>> result) + O(1) (for vector<int> count(26) and string key) = O(n * m)
+
+    In summary, the space complexity of the groupAnagrams function is O(n * m), where 'n' is the number of strings in the input strs,
+    and 'm' is the maximum number of anagrams associated with a single key.
+    The space complexity is primarily determined by the unordered_map m, which stores the grouped anagrams.*/
+
     std::vector<std::vector<QString>> groupAnagrams(const std::vector<QString>& strs)
     {
         std::unordered_map<QString, std::vector<QString>> comp;
