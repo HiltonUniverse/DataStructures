@@ -7,6 +7,23 @@ The main goal is to learn and master as many data structures and algoritms as po
 * Every new DAS is written in a .h file to keep things simple and save time.
 * Every DSA has it's Time and Space Complexity calculated.
 
+```cpp
+/**
+ * @function: function name
+ * @param   : takes parameters
+ * @return  : solutions
+*/
+return function(param)
+{
+  //algorithm
+  //return value
+}
+```
+
+```diff
+@@Algorithm solved so far@@
+```
+
 # Note
 No unit test have been written, at least for now because of the amount of time it takes to do so. More focused on learning the basics at
 the moment. Future implementations can have unittests.
