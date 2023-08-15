@@ -20,9 +20,11 @@ return function(param)
 }
 ```
 
-```diff
-@@Algorithm solved so far@@
-```
+# Challanges solved so far
+
+|Challenge | Solution | Difficulty
+|:--:|:--| :--:|
+|[121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)| [Solution](https://github.com/HiltonUniverse/DataStructures/blob/master/DSA/include/BestTimetoBuyandSellStock.h) | 🟩 |
 
 # Note
 No unit test have been written, at least for now because of the amount of time it takes to do so. More focused on learning the basics at
