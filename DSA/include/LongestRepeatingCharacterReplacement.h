@@ -26,20 +26,18 @@ public:
         while(r < s.length())
         {
             char_count[s[r]]++;
-            int window_size = r - l + 1;
             //if new char has higher count than what we have seen so far, we set that as the max count
+            //Why do we always take the max for max_count and not decrease it if the count int he char_count drops?
+            //see video: https://youtu.be/gqXU1UyA8pk?t=748
             max_count = std::max(max_count, char_count[s[r]]);
 
-            if(window_size - max_count <= k)
-            {
-                result = window_size;
-            }
-            else
+            if(r - l + 1 - max_count > k)
             {
                 char_count[s[l]]--;
                 ++l;
             }
 
+            result = std::max(result, r - l + 1);
             ++r;
         }
 
@@ -54,9 +52,9 @@ namespace test
     {
         LongestRepeatingCharacterReplacement replacement;
         std::string s{"ABAB"};
-        qWarning() << replacement.characterReplacement(s, 2);
+        //qWarning() << replacement.characterReplacement(s, 2);
 
-        std::string s_two{"AABABBA"};
+        std::string s_two{"AAABBA"};
         qWarning() << replacement.characterReplacement(s_two, 1);
     }
 }
