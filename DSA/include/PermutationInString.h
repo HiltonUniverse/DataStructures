@@ -49,6 +49,47 @@ public:
         return false;
     }
 
+    //-----------------------------------
+    //Figured this technique myself
+    //We can use count to keep track of how many elements left to find in s2 of s1.
+    //if that reaches 0, when it's reached 0, we have found the permutation
+    bool checkInclusionNoComparisionNew(std::string s1, std::string s2)
+    {
+        std::vector<int> char_count(26,0);
+        for(const char& c : s1)
+        {
+            char_count[c - 'a']++;
+        }
+
+        int l = 0;
+        int r = 0;
+        const int max_window_size = s1.size();
+
+        while(r < s2.size())
+        {
+            //accumulate from right, check for result
+            char_count[s2[r] - 'a']--;
+            if(isPermutation(char_count))
+            {
+                return true;
+            }
+
+            //if > window size, release from right
+            if(r-l+1 > max_window_size)
+            {
+                char_count[s2[l] - 'a']++;
+                ++l;
+            }
+
+            if(isPermutation(char_count))
+            {
+                return true;
+            }
+            ++r;
+        }
+
+        return false;
+    }
 
     //-----------------------------------
     bool checkInclusionNoComparision(std::string s1, std::string s2)
@@ -103,8 +144,10 @@ namespace test
 void permutationInStringTest()
 {
     PermutationInString permutation;
-    qWarning() << permutation.checkInclusionNoComparision("ab", "eidbaooo");
+    //qWarning() << permutation.checkInclusionUsingCount("ab", "eidboaooo");
+    //qWarning() << permutation.checkInclusionNoComparision("ab", "eidbaooo");
+//    qWarning() << permutation.checkInclusionNoComparisionNew("ab", "eidbaooo");
 
-    qWarning() << permutation.checkInclusion("ab", "eidboaoo");
+//    qWarning() << permutation.checkInclusion("ab", "eidboaoo");
 }
 }

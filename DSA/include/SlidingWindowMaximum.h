@@ -74,6 +74,7 @@ public:
 
             //we check if the window is sized k
             //if it is, we take the first element from deque as that is the largest
+            //after r reaches the window size, for every next element we will take the first element as the max.
             if(r + 1 >= k)
             {
                 ans.push_back(nums[deque.front()]);
@@ -96,5 +97,9 @@ namespace test
         qWarning() << max.maxSlidingWindowBetter({1,3,-1,-3,5,3,6,7}, 3);//expected [3, 3, 5, 5, 6, 7]
         qWarning() << max.maxSlidingWindowBetter({1}, 1); //expected [1]
         qWarning() << max.maxSlidingWindowBetter({1, -1}, 1); //expected [1, -1]
+
+        //qWarning() << max.maxSlidingWindow({1,3,-1,-3,5,3,6,7}, 3);//expected [3, 3, 5, 5, 6, 7]
+        //qWarning() << max.maxSlidingWindow({1}, 1); //expected [1]
+        //qWarning() << max.maxSlidingWindow({1, -1}, 1); //expected [1, -1]
     }
 }

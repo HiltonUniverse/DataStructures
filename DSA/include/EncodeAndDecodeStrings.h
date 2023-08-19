@@ -30,10 +30,17 @@ public:
     std::vector<std::string> decode(std::string &str)
     {
         std::vector<std::string> decoded_strs;
+
         for(size_t i = 0; i < str.length();)
         {
+            //find the first # starting from i.
             const int hash = static_cast<int>(str.find("#", i));
+            //this basically does initially for 2#ca4#appl = (0,1-0), giving 2 back.
             const int length = stoi(str.substr(i, hash - i));
+            //NOTE: int length = str[hash_index -1] - '0'; i have tried to use this to convert the char length
+            //to int length. But this does not work if the length value is > 9. For '10' - '0', the length becomes 12544
+
+            //then we move i to the next #, where is:
             i = hash + length + 1;
             decoded_strs.push_back(str.substr(hash + 1, length));
         }
