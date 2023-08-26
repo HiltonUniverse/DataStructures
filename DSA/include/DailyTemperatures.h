@@ -25,7 +25,7 @@ public:
 
         for(int i = 0; i < temperatures.size(); ++i)
         {
-            while(!stack.empty() && temperatures[i] > stack.top().first)
+            while(!stack.empty() && stack.top().first < temperatures[i])
             {
                 int current_temp_index = i;
                 int previous_day_temp_indes = stack.top().second;
@@ -47,12 +47,12 @@ namespace test
     {
         DailyTemperatures daily_temperatures;
         std::vector<int> val{73,74,75,71,69,72,76,73};
-        qWarning() << daily_temperatures.dailyTemperatures(val);
+        qWarning() << daily_temperatures.dailyTemperatures(val);// expected output: {1,1,4,2,1,1,0,0}
 
         std::vector<int> val_2{30,40,50,60};
-        qWarning() << daily_temperatures.dailyTemperatures(val_2);
+        qWarning() << daily_temperatures.dailyTemperatures(val_2);// expected output: {1,1,1,0}
 
         std::vector<int> val_3{30,60,90};
-        qWarning() << daily_temperatures.dailyTemperatures(val_3);
+        qWarning() << daily_temperatures.dailyTemperatures(val_3);// expected output: {1,1,0}
     }
 }
