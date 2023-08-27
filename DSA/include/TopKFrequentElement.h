@@ -2,7 +2,7 @@
 
 #include <QDebug>
 #include <vector>
-#include <iostream>
+#include <queue>
 
 #include <unordered_map>
 
@@ -47,6 +47,49 @@ public:
             }
         }
 
+        return result;
+    }
+
+    //-----------------------------------
+    struct Comparator
+    {
+        //max queue
+        bool operator()(std::pair<int, int>& a, std::pair<int, int>& b) //O(1)
+        {
+            return a.first < b.first;
+        }
+
+        //min queue
+        //bool operator()(std::pair<int, int>& a, std::pair<int, int>& b) //O(1)
+        //{
+            //return a.first > b.first;
+        //}
+    };
+
+    //Time Complexity: O(n) + O(n log n) + O(k * log n) = O( n log n)
+    std::vector<int> topKFrequentQueue(std::vector<int>& nums, int k)
+    {
+        std::unordered_map<int,int> count;
+        for(int num : nums) //O(n)
+        {
+            count[num]++;
+        }
+
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, Comparator> queue;
+        //std::priority_queue<std::pair<int,int>> queue;
+        //O(n) * O(log n) = O(n log n)
+        for(auto [key, value] : count) //O(n)
+        {
+            queue.push({value, key}); //O(log n)
+        }
+
+        std::vector<int> result;
+        //O(k-1) * O(log n) = O(k * log n)
+        for(int i = k - 1; i >= 0; --i) //O(k - 1)
+        {
+            result.push_back(queue.top().second); //O(1)
+            queue.pop();//O(log n)
+        }
 
         return result;
     }
