@@ -30,7 +30,7 @@ public:
              {
                  return nums[mid+1];
              }
-             else if(nums[mid] > nums[nums.size() - 1])
+             else if(nums[mid] > nums[right])
              {
                  left = mid + 1;
              }
@@ -51,12 +51,16 @@ namespace test
     {
         FindMinimumInRotatedSortedArray find_min;
         std::vector<int> pile{3,4,5,1,2};
-        qWarning() << find_min.findMin(pile);
+        qWarning() << find_min.findMin(pile); // 1
 
         std::vector<int> pile_2{4,5,6,7,0,1,2};
-        qWarning() << find_min.findMin(pile_2);
+        qWarning() << find_min.findMin(pile_2); // 0
 
         std::vector<int> pile_3{11,13,15,17};
-        qWarning() << find_min.findMin(pile_3);
+        qWarning() << find_min.findMin(pile_3); // 11
+
+        std::vector<int> pile_4{4,5,1,2,3};
+        qWarning() << find_min.findMin(pile_4); // 1
+
     }
 }
