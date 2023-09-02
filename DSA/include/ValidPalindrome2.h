@@ -4,6 +4,7 @@
 class ValidPalindromeII
 {
 public:
+    //Time complexity: O(n)
     //-----------------------------------
     bool isValidPalindrome(int left, int right, const std::string& s, int count)
     {
